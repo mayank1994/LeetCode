@@ -1,0 +1,41 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        permute(result, nums, 0);
+        return result;        
+        
+    }
+    
+    
+      private void permute(List<List<Integer>> result, int[] num, int start){
+          
+          if(start>=num.length){
+          List<Integer> current = new ArrayList<Integer>();
+              
+          for(int i:num){
+             current.add(i);
+
+              }
+              
+              result.add(current);
+          }
+          else{
+              
+              for(int j=start; j<num.length; j++)
+              {
+                  swap(num,start,j);
+                  permute(result, num, start+1);
+                  swap(num,start,j);
+              }
+          }
+          
+      }
+    
+    public void swap(int[] num, int i, int j ){
+        int temp = num[i];
+        num[i]=num[j];
+        num[j]=temp;
+        
+    }
+}
