@@ -1,0 +1,18 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+       Set<Integer> map = new HashSet<Integer>();
+        
+       for(int dup: nums)
+       {
+           if(map.contains(dup))
+           {    
+               return dup;
+           }
+           
+         map.add(dup);
+
+       }
+     
+        return -1;
+    }
+}
