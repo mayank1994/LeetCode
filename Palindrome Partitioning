@@ -1,0 +1,52 @@
+class Solution {
+    
+    List<List<String>> res;
+    ArrayList<String> curr;
+    
+    public List<List<String>> partition(String s) {
+       
+       res = new ArrayList<List<String>>();
+       curr = new ArrayList<String>();
+        
+       backTrack(s,0);
+       return res;
+        
+    }
+    
+    
+    public void backTrack(String s, int l){
+        
+        if(curr.size()>0 && l>=s.length()){
+        List<String> r = (ArrayList<String>)curr.clone();
+        res.add(r);    
+            
+        }
+        
+        for(int i=l; i<s.length(); i++){
+            if(isPalindrome(s,l,i)){
+                if(l==i)
+                    curr.add(Character.toString(s.charAt(i)));
+                else
+                    curr.add(s.substring(l,i+1));
+                backTrack(s,i+1);
+                curr.remove(curr.size()-1);
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    public boolean isPalindrome(String str, int l, int r){
+        if(l==r)
+            return true;
+        while(l<r){
+            if(str.charAt(l)!=str.charAt(r))
+                return false;
+            l++;
+            r--;
+        }
+        return true;
+    }
+}
