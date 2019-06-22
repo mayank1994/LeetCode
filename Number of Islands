@@ -25,13 +25,26 @@ class Solution {
         
     }
     
+     /**
+     * Marks the given site as visited, then checks adjacent sites.
+     * 
+     * Or, Marks the given site as water, if land, then checks adjacent sites.
+     * 
+     * Or, Given one coordinate (i,j) of an island, obliterates the island
+     * from the given grid, so that it is not counted again.
+     * 
+     * @param i, the row index of the given grid
+     * @param j, the column index of the given grid
+     */
     
     private void DFS(char[][] grid, int i, int j){
         
         if(i<0 || j<0 || i>=n || j>=m || grid[i][j] !='1')
             return;
         
+        //site visited
         grid[i][j] = '0';
+        
         DFS(grid, i+1, j);
         DFS(grid, i-1, j);
         DFS(grid, i, j+1);
