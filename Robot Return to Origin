@@ -1,0 +1,33 @@
+class Solution {
+    public boolean judgeCircle(String moves) {
+        
+        char arr[] = moves.toCharArray();
+        int U=0,D=0,L=0,R=0;
+        
+            
+        for(int i=0; i<moves.length();i++){
+
+            if(arr[i]=='U')
+                U++;
+            
+            else if(arr[i]=='D')
+                D++;
+            
+            else if(arr[i]=='L')
+                L++;
+            
+            else if(arr[i]=='R')
+                R++;
+            
+            
+        }
+      
+        
+        if(U==D && L==R)
+            return true;
+        
+
+        return false;
+        
+    }
+}
