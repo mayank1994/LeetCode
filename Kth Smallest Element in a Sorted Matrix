@@ -1,0 +1,40 @@
+class Solution {
+    public int kthSmallest(int[][] matrix, int k) {
+        
+        int count=1;
+        int n=matrix.length;
+        
+        int temp[] = new int[n * n]; 
+        int l = 0; 
+      
+        // copy the elements of matrix  
+        // one by one into temp[] 
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < n; j++) 
+                temp[l++] = matrix[i][j]; 
+      
+        // sort temp[] 
+        Arrays.sort(temp); 
+          
+        // copy the elements of temp[] 
+        // one by one in mat[][] 
+        l = 0; 
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < n; j++) 
+                matrix[i][j] = temp[l++]; 
+        
+             
+        
+               
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                if(count==k)
+                    return matrix[i][j];
+                
+                count++;
+            }
+        }
+        
+        return 0;
+    }
+}
