@@ -1,0 +1,34 @@
+class Solution {
+    public String frequencySort(String s) {
+        
+        if(s.length() < 3)
+            return s;
+        
+        int max = 0;
+        int[] map = new int[256];
+        for(char ch : s.toCharArray()) {
+            map[ch]++;
+            max = Math.max(max,map[ch]);
+        }
+        
+        String[] bucket = new String[max+1];
+        for(int i=0; i<256; i++){
+            String str = bucket[map[i]];
+            if(map[i]>0)
+                bucket[map[i]] = (str == null)? ""+(char)i : (str+(char)i);
+            
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i=max; i>=0; i--){
+            if(bucket[i]!=null)
+                for(char ch: bucket[i].toCharArray())
+                    for(int j=0; j<i; j++)
+                        sb.append(ch);
+        }
+        
+        return sb.toString();
+        
+    }
+}
