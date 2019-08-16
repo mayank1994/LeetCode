@@ -1,0 +1,24 @@
+class Solution {
+    int count=0;
+    public int countSubstrings(String s) {
+        
+        int len = s.length();
+        
+        for(int i=0; i<len; i++){
+            palindrome(s, i, i);            //odd length
+            palindrome(s, i, i+1);          //even length
+        }
+              
+        return count;
+    }
+    
+    
+    private void palindrome(String s, int left, int right){
+        while(left>=0 && right<s.length() && s.charAt(left)==s.charAt(right)){
+            count++;
+            left--;
+            right++;
+        }
+    }
+    
+}
