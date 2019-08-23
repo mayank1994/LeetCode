@@ -1,0 +1,26 @@
+class Solution {
+    public int[] countBits(int num) {
+        
+      //  String s=Integer.toBinaryString(num);
+      //  System.out.println(s);
+        
+        int l = num;
+        int[] ans = new int[l+1];
+        
+        for(int i=0; i<=l; i++){
+            int count=0;            
+            String s = Integer.toBinaryString(i);
+            char[] helper = s.toCharArray();
+            for(char ch: helper){
+                if(ch=='1')
+                    count++;
+            }
+            
+            ans[i]=count;
+        }
+        
+        
+        return ans;
+        
+    }
+}
