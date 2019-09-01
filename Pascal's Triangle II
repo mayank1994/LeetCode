@@ -1,0 +1,17 @@
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        
+        List<Integer> ans = new ArrayList<>();
+        
+        int l = rowIndex;
+        ans.add(1);
+        
+        for(int i=1; i<=l; i++){
+            double num = ans.get(i-1)*(double)(l-i+1)/i;
+            ans.add((int)Math.round(num));
+        }
+        
+        return ans;
+        
+    }
+}
