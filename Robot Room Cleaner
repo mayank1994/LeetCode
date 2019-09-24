@@ -1,0 +1,80 @@
+/**
+ * // This is the robot's control interface.
+ * // You should not implement it, or speculate about its implementation
+ * interface Robot {
+ *     // Returns true if the cell in front is open and robot moves into the cell.
+ *     // Returns false if the cell in front is blocked and robot stays in the current cell.
+ *     public boolean move();
+ *
+ *     // Robot will stay in the same cell after calling turnLeft/turnRight.
+ *     // Each turn will be 90 degrees.
+ *     public void turnLeft();
+ *     public void turnRight();
+ *
+ *     // Clean the current cell.
+ *     public void clean();
+ * }
+ */
+class Solution {
+    int[][] dir = {{0,1},{1,0},{-1,0},{0,-1}};
+    
+    public void cleanRoom(Robot robot) {
+        
+        Set<String> visited = new HashSet<String>();
+        backtrack(robot, visited, 0, 0, 0);
+        
+    }
+    
+    private void backtrack(Robot robot, Set<String> visited, int i, int j, int arrow){
+       	String tmp = i + "->" + j;
+    	if(visited.contains(tmp)) {
+            return;
+        }
+        
+    	robot.clean();
+    	visited.add(tmp);
+
+    	for(int n = 0; n < 4; n++) {
+        // the robot can to four directions, we use right turn
+    		if(robot.move()) {
+    			// can go directly. Find the (x, y) for the next cell based on current direction
+    			int x = i, y = j;
+    			switch(arrow) {
+    				case 0:
+    					// go up, reduce i
+    					x = i-1;
+    					break;
+    				case 90:
+    					// go right
+    					y = j+1;
+    					break;
+    				case 180:
+    					// go down
+    					x = i+1;
+    					break;
+    				case 270:
+    					// go left
+    					y = j-1;
+    					break;
+    				default:
+    					break;
+    			}
+
+    			backtrack(robot, visited, x, y, arrow);
+                       // go back to the starting position
+			    robot.turnLeft();
+    			robot.turnLeft();
+    			robot.move();
+    			robot.turnRight();
+    			robot.turnRight();
+
+    		} 
+    		// turn to next direction
+    		robot.turnRight();
+    		arrow += 90;
+    		arrow %= 360;
+    	}
+
+    }    
+    
+}
