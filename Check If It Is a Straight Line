@@ -1,0 +1,20 @@
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        
+        if(coordinates.length<3 || coordinates[0].length==0)
+            return false;
+        
+        int[] x = coordinates[0];
+        int[] y = coordinates[1];
+        
+        for(int i=2; i<coordinates.length; i++){
+            
+            int[] z = coordinates[i];
+            
+            if((z[0]-x[0])*(y[1]-x[1]) != (z[1]-x[1])*(y[0]-x[0]))
+                return false;
+        }
+        
+        return true;
+    }
+}
