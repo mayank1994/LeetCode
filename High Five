@@ -1,0 +1,42 @@
+class Solution {
+    public int[][] highFive(int[][] items) {
+        
+        Arrays.sort(items, new Comparator<int[]>(){
+            public int compare(int[] student1, int[] student2){
+                if(student1[0] == student2[0]){
+                    return student2[1] - student1[1];
+                }
+                else{
+                    return student1[0] - student2[0];
+                }
+            }
+            
+        });
+        
+        int studentNums = items[items.length-1][0];
+        int[][] ans = new int[studentNums][2];
+        
+        int count =0;
+        int sum = 0;
+        int id = 1;
+        
+        for(int i=0; i<items.length; i++){
+            if(count!=5 && id == items[i][0]){
+                sum+=items[i][1];
+                count++;
+            }
+            
+            if(count==5){
+                int average = sum/5;
+                sum=0;
+                count=0;
+                ans[id-1][0]=id;
+                ans[id-1][1]=average;
+                id++;
+            }
+        }
+        
+        return ans;
+    }
+        
+}
